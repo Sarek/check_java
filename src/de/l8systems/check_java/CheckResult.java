@@ -40,6 +40,19 @@ public class CheckResult {
     }
 
     /**
+     * Create a new result set with return code, status message and performance data.
+     *
+     * @param resultCode the result code
+     * @param message the status message
+     * @param perfData the performance data
+     */
+    public CheckResult(CheckResult.code resultCode, String message, String perfData) {
+        this.resultCode = resultCode;
+        this.message = message;
+        this.perfData = perfData;
+    }
+
+    /**
      * Carries the result code of the check
      */
     private CheckResult.code resultCode;
@@ -83,7 +96,7 @@ public class CheckResult {
      * @return the status message
      */
     public String getMesssage() {
-
+        return message;
     }
 
     /**

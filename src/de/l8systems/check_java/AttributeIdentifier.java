@@ -28,7 +28,8 @@
 
 package de.l8systems.check_java;
 
-import javax.management.ObjectName;
+import javax.management.*;
+import java.io.IOException;
 
 /**
  * Class to save the identifying attributes of a JMX attribute
@@ -37,7 +38,7 @@ public class AttributeIdentifier {
     /**
      * The name of the object this attribute resides in
      */
-    private ObjectName objectName;
+    private String objectName;
 
     /**
      * The name of the attribute
@@ -50,15 +51,21 @@ public class AttributeIdentifier {
     private String subAttribute;
 
     /**
+     * The unit the result shall have
+     */
+    private String unit;
+
+    /**
      * Create a new identifier for a complex typed JMX attribute
      * @param obj the name of the object that contains this attribute
      * @param attribute the name of the attribute
      * @param subAttribute the name of the sub-attribute
      */
-    public AttributeIdentifier(ObjectName obj, String attribute, String subAttribute) {
+    public AttributeIdentifier(String obj, String attribute, String subAttribute, String unit) {
         this.objectName = obj;
         this.attribute = attribute;
         this.subAttribute = subAttribute;
+        this.unit = unit;
     }
 
     /**
@@ -66,8 +73,8 @@ public class AttributeIdentifier {
      * @param obj the name of the object that contains this attribute
      * @param attribute the name of the attribute
      */
-    public AttributeIdentifier(ObjectName obj, String attribute) {
-        this(obj, attribute, null);
+    public AttributeIdentifier(String obj, String attribute, String unit) {
+        this(obj, attribute, null, unit);
     }
 
     /**
@@ -75,7 +82,7 @@ public class AttributeIdentifier {
      *
      * @return the object name
      */
-    public ObjectName getObjectName() {
+    public String getObjectName() {
         return objectName;
     }
 
@@ -83,7 +90,7 @@ public class AttributeIdentifier {
      * Set the name of the object that contains this attribute
      * @param objectName the object name
      */
-    public void setObjectName(ObjectName objectName) {
+    public void setObjectName(String objectName) {
         this.objectName = objectName;
     }
 
@@ -117,5 +124,38 @@ public class AttributeIdentifier {
      */
     public void setSubAttribute(String subAttribute) {
         this.subAttribute = subAttribute;
+    }
+
+    /**
+     * Return the unit the value of this attribute will have
+     * @return the unit
+     */
+    public String getUnit() {
+        return unit;
+    }
+
+    /**
+     * Set the unit the value of this attribute will have
+     * @param unit the unit
+     */
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
+
+    /**
+     * Retrieve the value of a the JMX attribute defined by this object and return it.
+     *
+     * @param client the JMX server to retrieve it from
+     * @return a Result object with the value and the value's unit
+     */
+    public Result getValue(JMXClient client) throws AttributeNotFoundException, InstanceNotFoundException, IOException, ReflectionException, MalformedObjectNameException, MBeanException {
+        Object val = client.getAttribute(getObjectName(), getAttribute(), getSubAttribute());
+        Long intVal;
+        if(val instanceof Number) {
+            intVal = ((Number) val).longValue();
+        } else {
+            intVal = null;
+        }
+        return new Result(intVal, getUnit());
     }
 }

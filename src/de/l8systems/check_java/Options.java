@@ -40,6 +40,7 @@ public class Options {
         NonHeapMem,
         MemPoolEden,
         MemPoolSurvivor,
+        MemPoolOldGen,
         MemPoolCodeCache,
         GCMarkSweepCount,
         GCMarkSweepTime,
@@ -48,6 +49,8 @@ public class Options {
     }
 
     public Options(String[] args) throws IllegalArgumentException {
+        this.url = "service:jmx:rmi:///jndi/rmi://:9000/jmxrmi";
+
         // parse command line
         ArrayIterator<String> it = new ArrayIterator<String>(args);
 
@@ -68,6 +71,9 @@ public class Options {
                                         break;
                                     case "MemPoolSurvivor":
                                         setCheckType(CheckType.MemPoolSurvivor);
+                                        break;
+                                    case "MemPoolOldGen":
+                                        setCheckType(CheckType.MemPoolOldGen);
                                         break;
                                     case "MemPoolCodeCache":
                                         setCheckType(CheckType.MemPoolCodeCache);

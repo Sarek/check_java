@@ -29,6 +29,7 @@
 package de.l8systems.check_java;
 
 import javax.management.*;
+import javax.management.openmbean.CompositeDataSupport;
 import javax.management.remote.JMXConnector;
 import javax.management.remote.JMXConnectorFactory;
 import javax.management.remote.JMXServiceURL;
@@ -135,6 +136,18 @@ public class JMXClient {
      */
     public MBeanInfo getMBeanInfo(String objectName) throws MalformedObjectNameException, IntrospectionException, ReflectionException, InstanceNotFoundException, IOException {
         ObjectName obj = new ObjectName(objectName);
+
         return mbsc.getMBeanInfo(obj);
+    }
+
+    public Object getAttribute(String objectName, String attribute, String subAttribute) throws AttributeNotFoundException, MBeanException, ReflectionException, InstanceNotFoundException, IOException, MalformedObjectNameException {
+        ObjectName obj = new ObjectName(objectName);
+        Object val = mbsc.getAttribute(obj, attribute);
+
+        if (val instanceof CompositeDataSupport && subAttribute != null) {
+            return ((CompositeDataSupport) val).get(subAttribute);
+        } else {
+            return val;
+        }
     }
 }

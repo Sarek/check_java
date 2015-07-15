@@ -122,6 +122,8 @@ public class Main {
                 res.add(attr.getValue(client));
             }
 
+            client.close();
+
             String status = "OK";
             int statval = 0;
             if (res.get(0).getValue() > opts.getWarnThreshold()) {

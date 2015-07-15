@@ -45,6 +45,7 @@ import java.util.Set;
  */
 public class JMXClient {
     private MBeanServerConnection mbsc;
+    private JMXConnector connector;
 
     /**
      * An exemplary listener to retrieve notifications through JMX.
@@ -80,7 +81,7 @@ public class JMXClient {
         System.out.println("Connecting to JMX server");
 
         JMXServiceURL url = new JMXServiceURL(location);
-        JMXConnector connector = JMXConnectorFactory.connect(url, null);
+        connector = JMXConnectorFactory.connect(url, null);
 
         mbsc = connector.getMBeanServerConnection();
     }
@@ -149,5 +150,9 @@ public class JMXClient {
         } else {
             return val;
         }
+    }
+
+    public void close() throws IOException {
+        connector.close();
     }
 }

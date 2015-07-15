@@ -36,9 +36,16 @@ public class Result {
     private String unit;
     private String name;
 
+    public Result(Long value, String unit, String name) {
+        this.value = value;
+        this.unit = unit;
+        this.name = name;
+    }
+
     public Result(Long value, String unit) {
         this.value = value;
         this.unit = unit;
+        this.name = "unknown";
     }
 
     public Long getValue() {

@@ -131,12 +131,16 @@ public class Options {
     }
 
     private CheckType checkType;
-    private int warnThreshold;
-    private int critThreshold;
+    private Integer warnThreshold;
+    private Integer critThreshold;
     private String url;
 
     public CheckType getCheckType() {
-        return checkType;
+        if(checkType != null) {
+            return checkType;
+        } else {
+            throw new IllegalArgumentException("Option -t was not specified on the command line");
+        }
     }
 
     public void setCheckType(CheckType checkType) {
@@ -144,7 +148,11 @@ public class Options {
     }
 
     public int getWarnThreshold() {
-        return warnThreshold;
+        if(warnThreshold != null) {
+            return warnThreshold;
+        } else {
+            throw new IllegalArgumentException("Option -w was not specified on the command line");
+        }
     }
 
     public void setWarnThreshold(int warnThreshold) {
@@ -152,7 +160,11 @@ public class Options {
     }
 
     public int getCritThreshold() {
-        return critThreshold;
+        if(critThreshold != null) {
+            return critThreshold;
+        } else {
+            throw new IllegalArgumentException("Option -c was not specified on the command line");
+        }
     }
 
     public void setCritThreshold(int critThreshold) {
@@ -190,7 +202,11 @@ public class Options {
     }
 
     public String getUrl() {
-        return url;
+        if(url != null) {
+            return url;
+        } else {
+            throw new IllegalArgumentException("Option -u was not specified on the command line");
+        }
     }
 
     public void setUrl(String url) {

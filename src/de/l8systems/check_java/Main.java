@@ -135,8 +135,13 @@ public class Main {
             }
 
             System.out.println(status + ": " + hdr + ": " + res.get(0).getValue() + " " + res.get(0).getUnit() + "/" + opts.getWarnThreshold() + "/" + opts.getCritThreshold());
-            for (Result r : res) {
-                System.out.println("'" + r.getName() + "'=" + r.getValue() + r.getUnit());
+            for(int i = 0; i < res.size(); i ++) {
+                Result r = res.get(i);
+                if(i == 0) {
+                    System.out.println("'" + r.getName() + "'=" + r.getValue() + r.getUnit() + ";" + opts.getWarnThreshold() + ";" + opts.getCritThreshold());
+                } else {
+                    System.out.println("'" + r.getName() + "'=" + r.getValue() + r.getUnit());
+                }
             }
             System.exit(statval);
         } catch (Exception e) {

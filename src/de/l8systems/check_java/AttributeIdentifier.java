@@ -156,6 +156,10 @@ public class AttributeIdentifier {
         } else {
             intVal = null;
         }
-        return new Result(intVal, getUnit());
+        if(subAttribute != null) {
+            return new Result(intVal, getUnit(), getSubAttribute());
+        } else {
+            return new Result(intVal, getUnit(), getAttribute());
+        }
     }
 }

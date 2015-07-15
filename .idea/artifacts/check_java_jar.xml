@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact build-on-make="true" name="check_java:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/check_java_jar</output-path>
+    <root id="root">
+      <element id="archive" name="check_java.jar">
+        <element id="module-output" name="check_java" />
+      </element>
+    </root>
+  </artifact>
+</component>

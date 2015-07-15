@@ -121,8 +121,9 @@ public class Options {
                                 throw new IllegalArgumentException("-u needs to be followed by a URL string");
                             }
                             break;
-
+                default:    System.out.println("Unrecognized option: " + arg);
                 case "-h":  printUsage();
+                            System.exit(3);
                             break;
 
             }
@@ -164,7 +165,7 @@ public class Options {
 
         public ArrayIterator(E[] array) {
             this.array = array;
-            this.pos = 0;
+            this.pos = -1;
         }
 
         @Override

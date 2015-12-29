@@ -36,6 +36,8 @@ import javax.management.remote.JMXServiceURL;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -79,10 +81,18 @@ public class JMXClient {
      */
     public JMXClient(String location) throws MalformedURLException, java.io.IOException {
         System.out.println("Connecting to JMX server");
-
+	
+	String jmxUser = System.getenv("check_java_jmxUser");
+	String jmxPass = System.getenv("check_java_jmxPass");
+	
+	Map<String, Object> env = new HashMap<>();
+	String[] creds = new String[] {jmxUser, jmxPass};
+        env.put(JMXConnector.CREDENTIALS, creds);
+	
         JMXServiceURL url = new JMXServiceURL(location);
-        connector = JMXConnectorFactory.connect(url, null);
-
+	
+        connector = JMXConnectorFactory.connect(url, env);
+	
         mbsc = connector.getMBeanServerConnection();
     }
 

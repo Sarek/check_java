@@ -97,7 +97,7 @@ public class Main {
 
                 case GCMarkSweepTime:
                     attrs.add(new AttributeIdentifier("java.lang:type=GarbageCollector,name=PS MarkSweep", "CollectionTime", "ms"));
-                    hdr = "Gargabe Collection Time";
+                    hdr = "Garbage Collection Time";
                     break;
 
                 case ClassLoading:

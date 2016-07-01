@@ -37,7 +37,17 @@ public class Result {
     private String name;
 
     public Result(Long value, String unit, String name) {
-        this.value = value;
+
+        if("MB".equals(unit)){
+            this.value = value/1000000;
+        }else if("KB".equals(unit)){
+            this.value = value/1000;
+        }else if("GB".equals(unit)){
+            this.value = value/1000000000;
+        }else {
+            this.value = value;
+        }
+
         this.unit = unit;
         this.name = name;
     }

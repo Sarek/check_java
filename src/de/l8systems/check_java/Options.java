@@ -121,6 +121,13 @@ public class Options {
                                 throw new IllegalArgumentException("-u needs to be followed by a URL string");
                             }
                             break;
+                case "-U":  if(it.hasNext()) {
+                                String arg2 = it.next();
+                                setUnit(arg2);
+                            } else {
+                                throw new IllegalArgumentException("-U needs to be followed by a Unit string (B/MB/KB/GB)");
+                            }
+                            break;
                 default:    System.out.println("Unrecognized option: " + arg);
                 case "-h":  printUsage();
                             System.exit(3);
@@ -134,6 +141,15 @@ public class Options {
     private Integer warnThreshold;
     private Integer critThreshold;
     private String url;
+    private String unit;
+
+    public String getUnit(){
+        return this.unit;
+    }
+
+    public void setUnit(String unit){
+        this.unit = unit;
+    }
 
     public CheckType getCheckType() {
         if(checkType != null) {
@@ -256,6 +272,7 @@ public class Options {
         System.out.println("\t\tto Nagios.");
         System.out.println("-c <Level>\tA number that will result in check_java returning a CRITICAL state");
         System.out.println("\t\tto Nagios. Should be higher than -w");
+        System.out.println("-U\tUnit : GB, MB, B, KB");
         System.out.println("-h\tDisplay this message");
     }
 }

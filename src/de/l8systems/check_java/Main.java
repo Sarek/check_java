@@ -43,50 +43,50 @@ public class Main {
             String hdr = "UNKNOWN";
             switch (opts.getCheckType()) {
                 case HeapMem:
-                    attrs.add(new AttributeIdentifier("java.lang:type=Memory", "HeapMemoryUsage", "used", "B"));
-                    attrs.add(new AttributeIdentifier("java.lang:type=Memory", "HeapMemoryUsage", "init", "B"));
-                    attrs.add(new AttributeIdentifier("java.lang:type=Memory", "HeapMemoryUsage", "committed", "B"));
-                    attrs.add(new AttributeIdentifier("java.lang:type=Memory", "HeapMemoryUsage", "max", "B"));
+                    attrs.add(new AttributeIdentifier("java.lang:type=Memory", "HeapMemoryUsage", "used", opts.getUnit()));
+                    attrs.add(new AttributeIdentifier("java.lang:type=Memory", "HeapMemoryUsage", "init", opts.getUnit()));
+                    attrs.add(new AttributeIdentifier("java.lang:type=Memory", "HeapMemoryUsage", "committed", opts.getUnit()));
+                    attrs.add(new AttributeIdentifier("java.lang:type=Memory", "HeapMemoryUsage", "max", opts.getUnit()));
                     hdr = "Heap Memory Usage";
                     break;
 
                 case NonHeapMem:
-                    attrs.add(new AttributeIdentifier("java.lang:type=Memory", "NonHeapMemoryUsage", "used", "B"));
-                    attrs.add(new AttributeIdentifier("java.lang:type=Memory", "NonHeapMemoryUsage", "init", "B"));
-                    attrs.add(new AttributeIdentifier("java.lang:type=Memory", "NonHeapMemoryUsage", "committed", "B"));
-                    attrs.add(new AttributeIdentifier("java.lang:type=Memory", "NonHeapMemoryUsage", "max", "B"));
+                    attrs.add(new AttributeIdentifier("java.lang:type=Memory", "NonHeapMemoryUsage", "used", opts.getUnit()));
+                    attrs.add(new AttributeIdentifier("java.lang:type=Memory", "NonHeapMemoryUsage", "init", opts.getUnit()));
+                    attrs.add(new AttributeIdentifier("java.lang:type=Memory", "NonHeapMemoryUsage", "committed", opts.getUnit()));
+                    attrs.add(new AttributeIdentifier("java.lang:type=Memory", "NonHeapMemoryUsage", "max", opts.getUnit()));
                     hdr = "Non-Heap Memory Usage";
                     break;
 
                 case MemPoolEden:
-                    attrs.add(new AttributeIdentifier("java.lang:type=MemoryPool,name=PS Eden Space", "Usage", "used", "B"));
-                    attrs.add(new AttributeIdentifier("java.lang:type=MemoryPool,name=PS Eden Space", "Usage", "init", "B"));
-                    attrs.add(new AttributeIdentifier("java.lang:type=MemoryPool,name=PS Eden Space", "Usage", "committed", "B"));
-                    attrs.add(new AttributeIdentifier("java.lang:type=MemoryPool,name=PS Eden Space", "Usage", "max", "B"));
+                    attrs.add(new AttributeIdentifier("java.lang:type=MemoryPool,name=PS Eden Space", "Usage", "used", opts.getUnit()));
+                    attrs.add(new AttributeIdentifier("java.lang:type=MemoryPool,name=PS Eden Space", "Usage", "init", opts.getUnit()));
+                    attrs.add(new AttributeIdentifier("java.lang:type=MemoryPool,name=PS Eden Space", "Usage", "committed", opts.getUnit()));
+                    attrs.add(new AttributeIdentifier("java.lang:type=MemoryPool,name=PS Eden Space", "Usage", "max", opts.getUnit()));
                     hdr = "Memory Pool PS Eden Space Usage";
                     break;
 
                 case MemPoolSurvivor:
-                    attrs.add(new AttributeIdentifier("java.lang:type=MemoryPool,name=PS Survivor Space", "Usage", "used", "B"));
-                    attrs.add(new AttributeIdentifier("java.lang:type=MemoryPool,name=PS Survivor Space", "Usage", "init", "B"));
-                    attrs.add(new AttributeIdentifier("java.lang:type=MemoryPool,name=PS Survivor Space", "Usage", "committed", "B"));
-                    attrs.add(new AttributeIdentifier("java.lang:type=MemoryPool,name=PS Survivor Space", "Usage", "max", "B"));
+                    attrs.add(new AttributeIdentifier("java.lang:type=MemoryPool,name=PS Survivor Space", "Usage", "used", opts.getUnit()));
+                    attrs.add(new AttributeIdentifier("java.lang:type=MemoryPool,name=PS Survivor Space", "Usage", "init", opts.getUnit()));
+                    attrs.add(new AttributeIdentifier("java.lang:type=MemoryPool,name=PS Survivor Space", "Usage", "committed", opts.getUnit()));
+                    attrs.add(new AttributeIdentifier("java.lang:type=MemoryPool,name=PS Survivor Space", "Usage", "max", opts.getUnit()));
                     hdr = "Memory Pool PS Survivor Space Usage";
                     break;
 
                 case MemPoolCodeCache:
-                    attrs.add(new AttributeIdentifier("java.lang:type=MemoryPool,name=Code Cache", "Usage", "used", "B"));
-                    attrs.add(new AttributeIdentifier("java.lang:type=MemoryPool,name=Code Cache", "Usage", "init", "B"));
-                    attrs.add(new AttributeIdentifier("java.lang:type=MemoryPool,name=Code Cache", "Usage", "committed", "B"));
-                    attrs.add(new AttributeIdentifier("java.lang:type=MemoryPool,name=Code Cache", "Usage", "max", "B"));
+                    attrs.add(new AttributeIdentifier("java.lang:type=MemoryPool,name=Code Cache", "Usage", "used", opts.getUnit()));
+                    attrs.add(new AttributeIdentifier("java.lang:type=MemoryPool,name=Code Cache", "Usage", "init", opts.getUnit()));
+                    attrs.add(new AttributeIdentifier("java.lang:type=MemoryPool,name=Code Cache", "Usage", "committed", opts.getUnit()));
+                    attrs.add(new AttributeIdentifier("java.lang:type=MemoryPool,name=Code Cache", "Usage", "max", opts.getUnit()));
                     hdr = "Memory Pool Code Cache Usage";
                     break;
 
                 case MemPoolOldGen:
-                    attrs.add(new AttributeIdentifier("java.lang:type=MemoryPool,name=PS Old Gen", "Usage", "used", "B"));
-                    attrs.add(new AttributeIdentifier("java.lang:type=MemoryPool,name=PS Old Gen", "Usage", "init", "B"));
-                    attrs.add(new AttributeIdentifier("java.lang:type=MemoryPool,name=PS Old Gen", "Usage", "committed", "B"));
-                    attrs.add(new AttributeIdentifier("java.lang:type=MemoryPool,name=PS Old Gen", "Usage", "max", "B"));
+                    attrs.add(new AttributeIdentifier("java.lang:type=MemoryPool,name=PS Old Gen", "Usage", "used", opts.getUnit()));
+                    attrs.add(new AttributeIdentifier("java.lang:type=MemoryPool,name=PS Old Gen", "Usage", "init", opts.getUnit()));
+                    attrs.add(new AttributeIdentifier("java.lang:type=MemoryPool,name=PS Old Gen", "Usage", "committed", opts.getUnit()));
+                    attrs.add(new AttributeIdentifier("java.lang:type=MemoryPool,name=PS Old Gen", "Usage", "max", opts.getUnit()));
                     hdr = "Memory Pool PS Old Gen Usage";
                     break;
 

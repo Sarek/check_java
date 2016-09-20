@@ -39,11 +39,11 @@ public class Result {
     public Result(Long value, String unit, String name) {
 
         if("MB".equals(unit)){
-            this.value = value/1000000;
+            this.value = value/1048576;
         }else if("KB".equals(unit)){
-            this.value = value/1000;
+            this.value = value/1024;
         }else if("GB".equals(unit)){
-            this.value = value/1000000000;
+            this.value = value/1073741824;
         }else {
             this.value = value;
         }

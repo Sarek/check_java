@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>de.l8systems.nagios</groupId>
-	<artifactId>check-java</artifactId>
+	<artifactId>check_java</artifactId>
 	<version>0.0.2-SNAPSHOT</version>
 	<packaging>jar</packaging>
 

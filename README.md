@@ -6,43 +6,43 @@ applications through Java's JMX interface.
 
 # Usage
 
-check_java will connect to a Java application and check one type of property
+`check_java` will connect to a Java application and check one type of property
 per run against user-defined limits.
-This is governed by command line parameters to check_java, it is called like this:
+This is governed by command line parameters to `check_java`, it is called like this:
 
-check_java [-u URL] -t TYPE -w WARN -c CRIT
+    check_java [-u URL] -t TYPE -w WARN -c CRIT
 
 The meaning of the parameters is as follows:
 
--u URL: The JMX service URL check_java will connect to. For details on how the
-        URL is constructed see the section "URL". If no URL is given, a default
-        URL is used:
-           service:jmx:rmi:///jndi/rmi://:9000/jmxrmi
+    -u URL: The JMX service URL check_java will connect to. For details on how the
+            URL is constructed see the section "URL". If no URL is given, a default
+            URL is used:
+               service:jmx:rmi:///jndi/rmi://:9000/jmxrmi
 
--t TYPE: The property type to check. See the Section "Types" for more
-         information about the available types.
+    -t TYPE: The property type to check. See the Section "Types" for more
+             information about the available types.
 
--w WARN: The warning threshold. If a property value is greater than this number,
-         check_java will return a WARNING state to Nagios.
+    -w WARN: The warning threshold. If a property value is greater than this number,
+             check_java will return a WARNING state to Nagios.
 
--c CRIT: The critical threshold. If a property value is greater than this number,
-         check_java will return a CRITICAL state to Nagios.
+    -c CRIT: The critical threshold. If a property value is greater than this number,
+             check_java will return a CRITICAL state to Nagios.
 
 # Starting a JMX agent
 
 You can turn any Java application into a JMX server (aka JMX agent) by supplying
 some additional parameters to the JVM. Call your JMX application like this:
 
-   java \
-   -Dcom.sun.management.jmxremote \
-   -Dcom.sun.management.jmxremote.authenticate=false \
-   -Dcom.sun.management.jmxremote.ssl=false \
-   -Dcom.sun.management.jmxremote.port=9000 \
-   -Djava.rmi.server.hostname=localhost \
+    java \
+    -Dcom.sun.management.jmxremote \
+    -Dcom.sun.management.jmxremote.authenticate=false \
+    -Dcom.sun.management.jmxremote.ssl=false \
+    -Dcom.sun.management.jmxremote.port=9000 \
+    -Djava.rmi.server.hostname=localhost \
 
 This will start a JMX agent on the loopback interface that listens for incoming
-connections on port 9000. Authentication and SSL are turned off as they are
-currently unsupported by check_java.
+connections on port `9000`. Authentication and SSL are turned off as they are
+currently unsupported by `check_java`.
 In case your application is also using RMI, you should probably drop the last
 parameter so no hostname and thus interface is set. Most applications will take
 care of this automatically, so you should not interfere. In this case, you should
@@ -51,30 +51,30 @@ just connect and use JMX to potentially even control your JVM.
 
 # URL
 
-After you have started your JMX agent, you need to tell check_java how it can
-connect to that agent. This is done through the URL parameter -u. JMX agent URLs
+After you have started your JMX agent, you need to tell `check_java` how it can
+connect to that agent. This is done through the URL parameter `-u`. JMX agent URLs
 are constructed in the following manner:
 
-   service:jmx:rmi:///jndi/rmi://<TARGET_MACHINE>:<RMI_REGISTRY_PORT>/jmxrmi
+    service:jmx:rmi:///jndi/rmi://<TARGET_MACHINE>:<RMI_REGISTRY_PORT>/jmxrmi
 
-<TARGET_MACHINE> is the IP address (or resolvable name) of the machine you want
+`<TARGET_MACHINE>` is the IP address (or resolvable name) of the machine you want
 to connect to, normally the same as the java.rmi.server.hostname property you
-set when starting the agent. the <RMI_REGISTRY_PORT> is the port number set
-using the com.sun.management.jmxremote.port property you set when starting the
+set when starting the agent. the `<RMI_REGISTRY_PORT>` is the port number set
+using the `com.sun.management.jmxremote.port` property you set when starting the
 agent.
 
-If the URL parameter -u is not given on the command line, check_java uses the
-default URL service:jmx:rmi:///jndi/rmi://:9000/jmxrmi. Using this URL,
-check_java will connect to a JMX agent on localhost at port 9000.
+If the URL parameter `-u` is not given on the command line, `check_java` uses the
+default URL `service:jmx:rmi:///jndi/rmi://:9000/jmxrmi`. Using this URL,
+`check_java` will connect to a JMX agent on localhost at port `9000`.
 
 # Types
 
-Check_java is able to check several standard JMX attributes provided by the
+`check_java` is able to check several standard JMX attributes provided by the
 JVM itself, thus independent of the actually running program. Currently it is
 not possible to check arbitrary JMX attributes.
 
-A check can be invoked by giving the check name to the check_java type parameter
--t.
+A check can be invoked by giving the check name to the `check_java` type parameter
+`-t`.
 
 ## HeapMem
 
